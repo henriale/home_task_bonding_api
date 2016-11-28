@@ -6,9 +6,37 @@
  */
 
 module.exports = {
+  schema: true,
 
   attributes: {
-
-  }
+    id: {
+      type: 'integer',
+      primaryKey: true,
+      autoIncrement: true
+    },
+    firstName: {
+      type: 'string'
+    },
+    lastName: {
+      type: 'string'
+    },
+    email: {
+      type: 'string',
+      unique: true,
+      required: true
+    },
+    username: {
+      type: 'string',
+      unique: true,
+      required: true
+    },
+    phone: {
+      type: 'string'
+    },
+    status: {
+      type: 'integer',
+      defaultsTo: 1
+    }
+  },
 };
 
