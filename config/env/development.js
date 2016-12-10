@@ -21,5 +21,5 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
-  port: 80,
+  port: 1337,
 };
