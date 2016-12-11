@@ -14,7 +14,7 @@ module.exports = {
   list: function (req, res) {
     Users.find().exec({
       error: function (err) {
-        return res.badRequest(ModelErrorService.parse(err))
+        return res.badRequest(ModelErrorService.parse({message: err}))
       },
       success: function(users) {
         return res.json(users)
@@ -30,7 +30,7 @@ module.exports = {
   store: function (req, res) {
     Users.create(req.params.all()).exec({
       error: function (err) {
-        return res.badRequest(ModelErrorService.parse(err))
+        return res.badRequest(ModelErrorService.parse({message: err}))
       },
       success: function (user) {
         return res.json(user)
@@ -48,7 +48,7 @@ module.exports = {
 
     Users.find({"id":id}).exec({
       error: function (err) {
-        return res.badRequest(ModelErrorService.parse(err))
+        return res.badRequest(ModelErrorService.parse({message: err}))
       },
       success: function (users) {
         if (users.length < 1) {
@@ -70,7 +70,7 @@ module.exports = {
 
     Users.update({"id":id}, req.params.all()).exec({
       error: function (err) {
-        return res.badRequest(ModelErrorService.parse(err))
+        return res.badRequest(ModelErrorService.parse({message: err}))
       },
       success: function (users) {
         return res.json(users[0])
@@ -88,7 +88,7 @@ module.exports = {
 
     Users.destroy({"id":id}).exec({
       error: function (err) {
-        return res.badRequest(ModelErrorService.parse(err))
+        return res.badRequest(ModelErrorService.parse({message: err}))
       },
       success: function () {
         return res.ok(204)

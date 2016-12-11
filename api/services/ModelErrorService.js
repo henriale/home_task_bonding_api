@@ -1,8 +1,15 @@
-module.exports = {
-  parse: function (message) {
-    if (message.invalidAttributes !== undefined) {
-      return module.exports.invalidAttributes(message.invalidAttributes)
+var self = {
+  /**
+   *
+   * @required {Object} message
+   *  The model error response
+   */
+  parse: function (options) {
+    if (options.message.invalidAttributes !== undefined) {
+      return self.invalidAttributes(options.message.invalidAttributes)
     }
+
+    return {}
   },
 
   invalidAttributes: function (attributes) {
@@ -15,7 +22,7 @@ module.exports = {
         }
 
         res[attr].push(
-          module.exports.rules[constraint.rule].replace("{attribute}", attr)
+          self.rules[constraint.rule].replace("{attribute}", attr)
         )
       })
     }
@@ -27,4 +34,6 @@ module.exports = {
     "string": "attribute {attribute} should be an string",
     "required": "attribute {attribute} is required",
   }
-};
+}
+
+module.exports = self
