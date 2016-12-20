@@ -56,19 +56,19 @@ module.exports.routes = {
     controller: 'Users',
     action: 'destroy'
   },
-  'GET /user/:userid/task': {
+  'GET /user/:user_id/task': {
     controller: 'Tasks',
     action: 'list'
   },
-  'POST /user/:userid/task': {
+  'POST /user/:user_id/task': {
     controller: 'Tasks',
     action: 'store'
   },
-  'GET /user/:userid/home': {
+  'GET /user/:user_id/home': {
     controller: 'Homes',
     action: 'list'
   },
-  'POST /user/:userid/home': {
+  'POST /user/:user_id/home': {
     controller: 'Homes',
     action: 'store'
   },
