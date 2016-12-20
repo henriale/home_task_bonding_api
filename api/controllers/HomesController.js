@@ -7,9 +7,14 @@
 
 module.exports = {
   list: function (req, res) {
-    var userid = req.param('userid');
-
-    return res.view();
+    Homes.find().exec({
+      error: function (err) {
+        return res.badRequest(ModelErrorService.parse({message: err}))
+      },
+      success: function(users) {
+        return res.json(users)
+      }
+    })
   },
   store: function (req, res) {
     var userid = req.param('userid');
