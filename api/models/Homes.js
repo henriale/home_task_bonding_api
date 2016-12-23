@@ -14,7 +14,8 @@ module.exports = {
       autoIncrement: true
     },
     name: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
     status: {
       type: 'integer',
