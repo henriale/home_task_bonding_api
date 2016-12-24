@@ -11,30 +11,60 @@ module.exports = {
       error: function (err) {
         return res.badRequest(ModelErrorService.parse({message: err}))
       },
-      success: function(users) {
-        return res.json(users)
+      success: function(homes) {
+        return res.json(homes)
       }
     })
   },
   store: function (req, res) {
-    var userid = req.param('userid');
-
-    return res.view();
+    Homes.create(req.params.all()).exec({
+      error: function (err) {
+        return res.badRequest(ModelErrorService.parse({message: err}))
+      },
+      success: function (homes) {
+        return res.json(homes)
+      }
+    })
   },
   show: function (req, res) {
-    var id = req.param('id');
+    var id = req.param('id')
 
-    return res.view();
+    Homes.find({"id":id}).exec({
+      error: function (err) {
+        return res.badRequest(ModelErrorService.parse({message: err}))
+      },
+      success: function (homes) {
+        if (homes.length < 1) {
+          return res.notFound('user not found')
+        }
+
+        return res.json(homes[0])
+      }
+    })
   },
   update: function (req, res) {
-    var id = req.param('id');
+    var id = req.param('id')
 
-    return res.view();
+    Homes.update({"id":id}, req.params.all()).exec({
+      error: function (err) {
+        return res.badRequest(ModelErrorService.parse({message: err}))
+      },
+      success: function (homes) {
+        return res.json(homes[0])
+      }
+    })
   },
   destroy: function (req, res) {
-    var id = req.param('id');
+    var id = req.param('id')
 
-    return res.view();
+    Homes.destroy({"id":id}).exec({
+      error: function (err) {
+        return res.badRequest(ModelErrorService.parse({message: err}))
+      },
+      success: function () {
+        return res.ok(204)
+      }
+    })
   },
 };
 
