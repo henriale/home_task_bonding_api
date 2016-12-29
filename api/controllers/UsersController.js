@@ -86,6 +86,13 @@ module.exports = {
   destroy: function (req, res) {
     var id = req.param('id')
 
+    Users.find({"id":id})
+      .exec({
+        success: function (data) {
+          if (data.length == 0) return res.ok(404)
+        }
+      })
+
     Users.destroy({"id":id}).exec({
       error: function (err) {
         return res.badRequest(ModelErrorService.parse({message: err}))
